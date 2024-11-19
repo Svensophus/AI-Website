@@ -1,13 +1,22 @@
 import { createApp } from "./config.js";
 
 const app = createApp({
-  user: "autumn_star_7622",
-  host: "168.119.168.41",
+  user: "bold_thunder_9261",
+  host: "bbz.cloud",
   database: "demo",
-  password: "uaioysdfjoysfdf",
-  port: 18324,
+  password: "0e071ded3d39bf876ae928defc206b72",
+  port: 30211,
 });
 
+app.get("/overview", async function (req, res) {
+  const beitrag = await app.locals.pool.query("select * from beitrag");
+  res.render("overview", { beitrag: beitrag.rows });
+});
+
+app.get("/overview", async function (req, res) {
+  const account = await app.locals.pool.query("select * from account");
+  res.render("overview", { account: account.rows });
+});
 /* Startseite */
 app.get("/", async function (req, res) {
   res.render("start", {});
