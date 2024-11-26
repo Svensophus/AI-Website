@@ -1,0 +1,20 @@
+<h2 class="login-heading">Login</h2>
+
+{{#if message}}
+  <p class="login-message">{{message}}</p>
+{{/if}}
+
+<form class="login-form" action="/login" method="POST">
+  <label for="login-name">Username:</label>
+  <input class="login-input" name="name" type="text" id="login-name" /><br />
+  <label for="login-password">Passwort:</label>
+  <input
+    class="login-input"
+    name="password"
+    type="password"
+    id="login-password"
+  /><br />
+  <input class="login-submit" type="submit" value="Login" />
+</form>
+
+<a href="/register" class="button register-link">Registrieren</a>

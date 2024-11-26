@@ -1,6 +1,22 @@
 <img src="Bild 2.png" width="100%" />
 
-<h1>Find the best AI tool for your desire</h1>
+<div class="main-title">
+  <h1>Find the best AI tool for your desire</h1>
+</div>
 
-<p>Willkommen auf meiner Website. Hier wird in Kürze eine interaktive
-  Webapplikation entstehen. Viel Vergnügen!</p>
+<div class="container-front">
+  {{#beitrag}}
+    <div class="post">
+      <h3>{{text}}</h3>
+      <h4>{{beschreibung}}</h4>
+      <img src="/uploads/{{bild}}" alt="Bild" />
+      <form
+        action="/beitrag_save/{{id}}"
+        enctype="multipart/form-data"
+        method="POST"
+      >
+        <input type="submit" value="speichern" />
+      </form>
+    </div>
+  {{/beitrag}}
+</div>
