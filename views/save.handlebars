@@ -1,5 +1,14 @@
-{{#beitrag_save}}
-  <h3>{{text}}</h3>
-  <h4>{{beschreibung}}</h4>
-  <img src="/uploads/{{bild}}" alt="Bild" />
-{{/beitrag_save}}
+<div class="container-front">
+  {{#beitrag_save}}
+    <div class="post">
+      <h3>{{text}}</h3>
+      <h4>{{beschreibung}}</h4>
+      <img src="/uploads/{{bild}}" alt="Bild" />
+      <form
+        action="/beitrag_save/{{id}}"
+        enctype="multipart/form-data"
+        method="POST"
+      >
+    </div>
+  {{/beitrag_save}}
+</div>

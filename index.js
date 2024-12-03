@@ -63,8 +63,9 @@ app.get("/save", async function (req, res) {
     "SELECT * FROM beitrag_save WHERE account_id = $1",
     [req.session.accountid]
   );
+
   const beitrag = await app.locals.pool.query("select * from beitrag");
-  res.render("start", { beitrag: beitrag.rows });
+  res.render("save", { beitrag: beitrag.rows });
 });
 
 /* Wichtig! Diese Zeilen müssen immer am Schluss der Website stehen! */
