@@ -1,9 +1,9 @@
 <div class="container-front">
   {{#beitrag_save}}
     <div class="post">
-      <h3>{{text}}</h3>
-      <h4>{{beschreibung}}</h4>
-      <img src="/uploads/{{bild}}" alt="Bild" />
+      <h3>{{beitrag_text}}</h3>
+      <h4>{{beitrag_beschreibung}}</h4>
+      <img src="/uploads/{{beitrag_bild}}" alt="Bild" />
       <form
         action="/beitrag_save/{{id}}"
         enctype="multipart/form-data"

@@ -59,13 +59,35 @@ app.post("/beitrag_save/:id", async function (req, res) {
 });
 
 app.get("/save", async function (req, res) {
-  const posts = await app.locals.pool.query(
-    "SELECT * FROM beitrag_save WHERE account_id = $1",
-    [req.session.accountid]
-  );
+  try {
+    const result = await app.locals.pool.query(
+      `
+      SELECT 
+        bs.*, 
+        b.id AS beitrag_id, 
+        b.name AS beitrag_name, 
+        b.text AS beitrag_text, 
+        b.bild AS beitrag_bild, 
+        b.beschreibung AS beitrag_beschreibung 
+      FROM 
+        beitrag_save bs 
+      JOIN 
+        beitrag b 
+      ON 
+        bs.beitrag_id = b.id -- Correcting the join condition to use beitrag_id
+      WHERE 
+        bs.account_id = $1; -- Ensuring only posts saved by the current user are shown
+      `,
+      [req.session.accountid]
+    );
 
-  const beitrag = await app.locals.pool.query("select * from beitrag");
-  res.render("save", { beitrag: beitrag.rows });
+    res.render("save", {
+      beitrag_save: result.rows,
+    });
+  } catch (error) {
+    console.log(error.message); // Log specific error message
+    res.status(500).send("Error retrieving data");
+  }
 });
 
 /* Wichtig! Diese Zeilen müssen immer am Schluss der Website stehen! */
